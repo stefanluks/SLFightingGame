@@ -1,9 +1,9 @@
 import Tela from "../modelos/Tela.js";
 import JogoConfig from "./jogo-config.js";
 
-const Intro = new Tela({ nome: "Introdução", ativo: false });
+const Intro = new Tela({ nome: "Introdução", ativo: true });
 const Menu = new Tela({ nome: "Menu", ativo: false });
-const Seletor = new Tela({ nome: "Seletor", ativo: true });
+const Seletor = new Tela({ nome: "Seletor", ativo: false });
 const Batalha = new Tela({ nome: "Batalha", ativo: false });
 
 const canvas = document.querySelector("#jogo");
@@ -150,7 +150,7 @@ Seletor.componentes = {
         hover: false,
         bgColorHover: "red",
     },
-    personagens: JogoConfig.lista_personagens,
+    personagens: [],
 }
 
 Seletor.Atualizar = (canvas, ctx) => {
