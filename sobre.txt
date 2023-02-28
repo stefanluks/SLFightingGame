@@ -1,0 +1,12 @@
+=============================================================
+||                 SL - Figthing Game                      ||
+||                    versão 1.0.0                         ||
+=============================================================
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  A idea é fazer um motor de jogo de luta, inspirado no Muggen
+  o sistema deve ser simples para que os usuarios consigam editar
+  e fazer suas propias versões e de forma fácil.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+criador por Stefan Lucas @stefan.luks
