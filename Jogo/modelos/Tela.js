@@ -1,5 +1,5 @@
 export default class Tela {
-    constructor({ nome, ativo = false }) {
+    constructor({ nome, ativo = false, background = "" }) {
         this.nome = nome;
         this.ativo = ativo;
         this.teclas = {};
@@ -7,6 +7,8 @@ export default class Tela {
         this.teclasSolta = {};
         this.jogo = null;
         this.componentes = {};
+        this.background = new Image();
+        this.background.src = background;
     }
 
     Iniciar() {

@@ -2,7 +2,7 @@ import Tela from "../modelos/Tela.js";
 import JogoConfig from "./jogo-config.js";
 
 const Intro = new Tela({ nome: "Introdução", ativo: true });
-const Menu = new Tela({ nome: "Menu", ativo: false });
+const Menu = new Tela({ nome: "Menu", ativo: false, background: "../Jogo/assets/sprites/bg-menu.png" });
 const Seletor = new Tela({ nome: "Seletor", ativo: false });
 const Batalha = new Tela({ nome: "Batalha", ativo: false });
 
@@ -43,13 +43,10 @@ Intro.teclasApertada = {
 
 //Configuração do Menu//
 
-let bgMenu = new Image();
-bgMenu.src = "../Jogo/assets/sprites/bg-menu.png";
-
 Menu.componentes = {
     btnJogarArcade: {
-        x: 150,
-        y: canvas.height - 150,
+        x: 30,
+        y: canvas.height - 210,
         w: 150,
         h: 50,
         text: "Arcade",
@@ -62,11 +59,25 @@ Menu.componentes = {
         bgColorHover: "red",
     },
     btnJogarVS: {
-        x: 150,
-        y: canvas.height - 90,
+        x: 30,
+        y: canvas.height - 150,
         w: 150,
         h: 50,
         text: "Versus",
+        bgColor: "blue",
+        textColor: "white",
+        font: "20px Arial",
+        textXadd: 40,
+        textYadd: 30,
+        hover: false,
+        bgColorHover: "red",
+    },
+    btnControles: {
+        x: 30,
+        y: canvas.height - 90,
+        w: 150,
+        h: 50,
+        text: "Controles",
         bgColor: "blue",
         textColor: "white",
         font: "20px Arial",
@@ -81,7 +92,7 @@ Menu.componentes = {
 Menu.Atualizar = (canvas, ctx) => {
     ctx.fillStyle = "blue";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(bgMenu, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(Menu.background, 0, 0, canvas.width, canvas.height);
     //botões do menu
     let btnArcade = Menu.componentes.btnJogarArcade;
     if (btnArcade.hover) ctx.fillStyle = btnArcade.bgColorHover;
@@ -97,6 +108,13 @@ Menu.Atualizar = (canvas, ctx) => {
     ctx.fillStyle = btnVS.textColor;
     ctx.font = btnVS.font;
     ctx.fillText(btnVS.text, btnVS.x + btnVS.textXadd, btnVS.y + btnVS.textYadd);
+    let btnControles = Menu.componentes.btnControles;
+    if (btnControles.hover) ctx.fillStyle = btnControles.bgColorHover;
+    else ctx.fillStyle = btnControles.bgColor;
+    ctx.fillRect(btnControles.x, btnControles.y, btnControles.w, btnControles.h);
+    ctx.fillStyle = btnControles.textColor;
+    ctx.font = btnControles.font;
+    ctx.fillText(btnControles.text, btnControles.x + btnControles.textXadd, btnControles.y + btnControles.textYadd);
 }
 
 Menu.MovimentoDoMouse = evento => {
@@ -119,6 +137,14 @@ Menu.MovimentoDoMouse = evento => {
         Menu.componentes.btnJogarVS.hover = true;
     } else {
         Menu.componentes.btnJogarVS.hover = false;
+    }
+    if (PosMouse.x >= Menu.componentes.btnControles.x &&
+        PosMouse.x <= Menu.componentes.btnControles.x + Menu.componentes.btnControles.w &&
+        PosMouse.y >= Menu.componentes.btnControles.y &&
+        PosMouse.y <= Menu.componentes.btnControles.y + Menu.componentes.btnControles.h) {
+        Menu.componentes.btnControles.hover = true;
+    } else {
+        Menu.componentes.btnControles.hover = false;
     }
 }
 
